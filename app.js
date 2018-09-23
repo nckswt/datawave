@@ -40,16 +40,25 @@ function getRecommendations (limit = 0) {
   return datastore.runQuery(query)
     .then((results) => {
       const entities = results[0];
-      return entities.map((entity) => `Time: ${entity.timestamp}, Artist: ${entity.artist}`);
+      return entities;
     });
 }
 
-app.get('/', (req, res, next) => {
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
+// TODO: insert recommendations, ratings, people, etc.
+// TODO:
+app.get('/recommendations', (req, res, next) => {
   getRecommendations().then((recommendations) => {
         res
           .status(200)
           .set('Content-Type', 'text/plain')
-          .send(`Last recommendations:\n${recommendations.join('\n')}`)
+          .send(recommendations)
           .end();
       })
       .catch(next);
