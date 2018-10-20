@@ -9,21 +9,27 @@
  */
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import './shared-styles.js';
 
-class MyView404 extends PolymerElement {
+class People extends PolymerElement {
   static get template() {
     return html`
-      <style>
+      <style include="shared-styles">
         :host {
           display: block;
 
-          padding: 10px 20px;
+          padding: 10px;
         }
       </style>
 
-      Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+      <div class="card">
+        <div class="circle">3</div>
+        <h1>View Three</h1>
+        <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
+        <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
+      </div>
     `;
   }
 }
 
-window.customElements.define('my-view404', MyView404);
+window.customElements.define('dw-people', People);

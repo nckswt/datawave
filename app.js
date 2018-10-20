@@ -51,8 +51,6 @@ app.use(function(req, res, next) {
 });
 
 
-// TODO: insert recommendations, ratings, people, etc.
-// TODO:
 app.get('/recommendations', (req, res, next) => {
   getRecommendations().then((recommendations) => {
         res

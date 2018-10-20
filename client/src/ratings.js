@@ -9,12 +9,9 @@
  */
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/iron-ajax/iron-ajax.js';
 import './shared-styles.js';
 
-
-
-class MyView1 extends PolymerElement {
+class Ratings extends PolymerElement {
   static get template() {
     return html`
       <style include="shared-styles">
@@ -26,25 +23,13 @@ class MyView1 extends PolymerElement {
       </style>
 
       <div class="card">
-        <h1>Recommended Albums</h1>
-        <iron-ajax
-              auto
-              url="http://127.0.0.1:8080/recommendations"
-              handle-as="json"
-              on-response="recommendationsResponse"
-              debounce-duration="300">
-          </iron-ajax>
-        <div id="results-table"></div>
+        <div class="circle">2</div>
+        <h1>View Two</h1>
+        <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
+        <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
       </div>
     `;
   }
-
-  recommendationsResponse(e) {
-    const resp = e.detail.response;
-    console.log(resp);
-    this.$['results-table'].innerHTML = `<pre>${JSON.stringify(resp, null, ' ')}</pre>`;
-  }
-
 }
 
-window.customElements.define('my-view1', MyView1);
+window.customElements.define('dw-ratings', Ratings);
