@@ -13,16 +13,6 @@
     "test:integration": "polymer build # test that psk builds without error with the CLI"
   },
   "dependencies": {
-    "babel-core": "^6.22.1",
-    "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.7.0",
-    "css-loader": "^0.28.0",
-    "extract-loader": "^1.0.2",
-    "file-loader": "^1.1.11",
-    "node-sass": "^4.9.0",
-    "sass-loader": "^6.0.4",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.4.3",
     "@polymer/app-layout": "^3.0.0-pre.15",
     "@polymer/app-route": "^3.0.0-pre.15",
     "@polymer/iron-ajax": "^3.0.1",
@@ -33,7 +23,18 @@
     "@polymer/iron-selector": "^3.0.0-pre.15",
     "@polymer/paper-icon-button": "^3.0.0-pre.15",
     "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "@vaadin/vaadin-grid": "^5.2.0-beta2",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.28.0",
+    "extract-loader": "^1.0.2",
+    "file-loader": "^1.1.11",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^6.0.4",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.4.3"
   },
   "devDependencies": {
     "polymer-cli": "^1.7.1",

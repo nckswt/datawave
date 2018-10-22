@@ -10,6 +10,7 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-ajax/iron-ajax.js';
+import './components/recommendations-table.js'
 import './shared-styles.js';
 
 
@@ -19,31 +20,16 @@ class Recommenations extends PolymerElement {
       <style include="shared-styles">
         :host {
           display: block;
-
           padding: 10px;
         }
       </style>
 
       <div class="card">
         <h1>Recommended Albums</h1>
-        <iron-ajax
-              auto
-              url="http://127.0.0.1:8080/recommendations"
-              handle-as="json"
-              on-response="recommendationsResponse"
-              debounce-duration="300">
-          </iron-ajax>
-        <div id="results-table"></div>
+        <dw-recommendations-table></dw-recommendations-table>
       </div>
     `;
   }
-
-  recommendationsResponse(e) {
-    const resp = e.detail.response;
-    console.log(resp);
-    this.$['results-table'].innerHTML = `<pre>${JSON.stringify(resp, null, ' ')}</pre>`;
-  }
-
 }
 
 window.customElements.define('dw-recommendations', Recommenations);
