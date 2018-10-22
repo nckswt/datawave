@@ -10,11 +10,11 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-ajax/iron-ajax.js';
-import './components/recommendations-table.js'
+import './components/albums-table.js'
 import './shared-styles.js';
 
 
-class Recommenations extends PolymerElement {
+class Albums extends PolymerElement {
   static get template() {
     return html`
       <style include="shared-styles">
@@ -26,10 +26,10 @@ class Recommenations extends PolymerElement {
 
       <div class="card">
         <h1>Recommended Albums</h1>
-        <dw-recommendations-table></dw-recommendations-table>
+        <dw-albums-table></dw-albums-table>
       </div>
     `;
   }
 }
 
-window.customElements.define('dw-recommendations', Recommenations);
+window.customElements.define('dw-albums', Albums);

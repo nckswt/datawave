@@ -84,7 +84,7 @@ class App extends PolymerElement {
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
           <app-toolbar>Menu</app-toolbar>
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-            <a name="recommendations" href="[[rootPath]]recommendations">Recommendations</a>
+            <a name="albums" href="[[rootPath]]albums">Albums</a>
             <a name="ratings" href="[[rootPath]]ratings">Ratings</a>
             <a name="people" href="[[rootPath]]people">People</a>
           </iron-selector>
@@ -101,7 +101,7 @@ class App extends PolymerElement {
           </app-header>
 
           <iron-pages selected="[[page]]" attr-for-selected="name" role="main">
-            <dw-recommendations name="recommendations"></dw-recommendations>
+            <dw-albums name="albums"></dw-albums>
             <dw-ratings name="ratings"></dw-ratings>
             <dw-people name="people"></dw-people>
             <dw-view404 name="view404"></dw-view404>
@@ -133,10 +133,10 @@ class App extends PolymerElement {
      // Show the corresponding page according to the route.
      //
      // If no page was found in the route data, page will be an empty string.
-     // Show 'recommendations' in that case. And if the page doesn't exist, show 'view404'.
+     // Show 'albums' in that case. And if the page doesn't exist, show 'view404'.
     if (!page) {
-      this.page = 'recommendations';
-    } else if (['recommendations', 'people', 'ratings'].indexOf(page) !== -1) {
+      this.page = 'albums';
+    } else if (['albums', 'people', 'ratings'].indexOf(page) !== -1) {
       this.page = page;
     } else {
       this.page = 'view404';
@@ -154,8 +154,8 @@ class App extends PolymerElement {
     // Note: `polymer build` doesn't like string concatenation in the import
     // statement, so break it up.
     switch (page) {
-      case 'recommendations':
-        import('./recommendations.js');
+      case 'albums':
+        import('./albums.js');
         break;
       case 'ratings':
         import('./ratings.js');

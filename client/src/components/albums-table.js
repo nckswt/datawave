@@ -10,6 +10,7 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-ajax/iron-ajax.js';
+import '@polymer/iron-image/iron-image.js';
 import '@vaadin/vaadin-grid/vaadin-grid.js';
 import '@vaadin/vaadin-grid/vaadin-grid-sorter.js';
 import '@vaadin/vaadin-grid/vaadin-grid-selection-column.js';
@@ -17,13 +18,68 @@ import '@vaadin/vaadin-grid/vaadin-grid-column.js';
 import '@vaadin/vaadin-grid/vaadin-grid-column-group.js';
 import '../shared-styles.js';
 
-class RecommenationsTable extends PolymerElement {
+class AlbumsTable extends PolymerElement {
   static get template() {
     return html`
-    <x-remote-sorting-example></x-remote-sorting-example>
-    <dom-module id="x-remote-sorting-example">
+    <style>
+      vaadin-grid {
+        height: 70vh;
+      }
 
-        <vaadin-grid aria-label="Sorting with Data Provider Example" id="grid">
+      .details {
+        display: flex;
+        font-size: 20px;
+      }
+
+      .details .img-column {
+          flex: 30%;
+          padding: 10px;
+          margin-right: 10px;
+      }
+
+      .details .info-column {
+          flex: 70%;
+          padding: 10px;
+      }
+
+      .details p {
+        display: flex;
+        width:100%;
+        font-size: 14px;
+      }
+
+      .details p span {
+        font-weight: 600;
+        padding-right: 10px;
+      }
+
+      iron-image {
+        width:300px;
+        height:200px;
+        background-color: lightgray;
+      }
+
+    </style>
+
+    <dom-module>
+
+        <vaadin-grid aria-label="Sorting with Data Provider Example" id="grid"
+          on-active-item-changed="_onActiveItemChanged">
+
+          <template class="row-details">
+            <div class="details">
+              <div class="img-column">
+                <iron-image sizing="contain" preload fade src="http://lorempixel.com/600/400"></iron-image>
+              </div>
+              <div class="info-column">
+                <p><span>Top Songs </span>[[item.top_songs]]</p>
+                <p><span>Subgenres </span>[[item.subgenres]]</p>
+                <p><span>Nationality </span>[[item.nationality]]</p>
+                <p><span>RIAA Certification </span>[[item.RIAA_certification]]</p>
+                <p><span>Comments </span>[[item.comments]]</p>
+              </div>
+            </div>
+          </template>
 
         <vaadin-grid-column-group resizable>
 
@@ -57,30 +113,9 @@ class RecommenationsTable extends PolymerElement {
 
           <vaadin-grid-column>
             <template class="header">
-              <vaadin-grid-sorter path="subgenres">Subgenres</vaadin-grid-sorter>
-            </template>
-            <template>[[item.subgenres]]</template>
-          </vaadin-grid-column>
-
-          <vaadin-grid-column>
-            <template class="header">
               <vaadin-grid-sorter path="year">Year</vaadin-grid-sorter>
             </template>
             <template>[[item.year]]</template>
-          </vaadin-grid-column>
-
-          <vaadin-grid-column>
-            <template class="header">
-              <vaadin-grid-sorter path="nationality">Nationality</vaadin-grid-sorter>
-            </template>
-            <template>[[item.nationality]]</template>
-          </vaadin-grid-column>
-
-          <vaadin-grid-column>
-            <template class="header">
-              <vaadin-grid-sorter path="comments">Comments</vaadin-grid-sorter>
-            </template>
-            <template>[[item.comments]]</template>
           </vaadin-grid-column>
 
         </vaadin-grid>
@@ -115,6 +150,11 @@ class RecommenationsTable extends PolymerElement {
       xhr.send();
     };
   }
+
+  _onActiveItemChanged(e) {
+    this.$.grid.detailsOpenedItems = [e.detail.value];
+  }
+
 }
 
-window.customElements.define('dw-recommendations-table', RecommenationsTable);
+window.customElements.define('dw-albums-table', AlbumsTable);
