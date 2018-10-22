@@ -129,8 +129,6 @@ class AlbumsTable extends PolymerElement {
     super.ready();
     var grid = this.$.grid;
 
-    grid.size = 200;
-
     grid.dataProvider = function(params, callback) {
       var xhr = new XMLHttpRequest();
       xhr.onload = function() {
@@ -141,7 +139,8 @@ class AlbumsTable extends PolymerElement {
              json.sort((a, b) => reverse * a[sort.path].localeCompare(b[sort.path]));
            });
 
-        callback(json);
+
+        callback(json, json.length);
       };
 
       var url = "http://127.0.0.1:8080/recommendations";
